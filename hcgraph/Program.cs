@@ -1,15 +1,21 @@
-﻿using hcgraph.Domain.Models;
+using hcgraph.Domain.Models;
 using hcgraph.Domain.Repositories;
 using hcgraph.Domain.Services;
 using hcgraph.ModelExtensions;
 using Microsoft.EntityFrameworkCore;
 using hcgraph.Queries;
 using hcgraph.Mutations;
+using HotChocolate.Execution.Options;
 
 IConfigurationRoot _configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
             .Build();
+
+SchemaBuilder.New().Create().MakeExecutable(new RequestExecutorOptions
+{
+    IncludeExceptionDetails = true
+});
 
 var builder = WebApplication.CreateBuilder(args);
 
