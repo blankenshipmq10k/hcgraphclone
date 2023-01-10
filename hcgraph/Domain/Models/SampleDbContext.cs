@@ -5,8 +5,15 @@ namespace hcgraph.Domain.Models
 {
     public class SampleDbContext : DbContext
     {
+        private static bool migrated = false;
+
         public SampleDbContext(DbContextOptions<SampleDbContext> options) : base(options)
         {
+            if (!migrated)
+            {
+                migrated = true;
+                Database.EnsureCreated();
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
