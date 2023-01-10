@@ -12,11 +12,6 @@ IConfigurationRoot _configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .Build();
 
-SchemaBuilder.New().Create().MakeExecutable(new RequestExecutorOptions
-{
-    IncludeExceptionDetails = true
-});
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<SampleDbContext>(options =>
