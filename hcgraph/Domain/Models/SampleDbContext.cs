@@ -9,17 +9,17 @@ namespace hcgraph.Domain.Models
 
         public SampleDbContext(DbContextOptions<SampleDbContext> options) : base(options)
         {
-            if (!migrated)
-            {
-                migrated = true;
-                //Database.EnsureCreated();
+            // if (!migrated)
+            // {
+            //     migrated = true;
+            //     //Database.EnsureCreated();
 
-                var test = Database.GetMigrations();
-                var a = test.Count();
+            //     var test = Database.GetMigrations();
+            //     var a = test.Count();
 
-                Database.Migrate();
-                //Database.
-            }
+            //     Database.Migrate();
+            //     //Database.
+            // }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

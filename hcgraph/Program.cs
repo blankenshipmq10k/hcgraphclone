@@ -20,6 +20,7 @@ builder.Services.AddDbContext<SampleDbContext>(options =>
     options.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));
 }, ServiceLifetime.Transient);
 
+
 builder.Services
     .AddScoped<IItemRepository, ItemRepository>()
     .AddScoped<IOrderItemRepository, OrderItemRepository>()
@@ -42,6 +43,11 @@ builder.Services
     .AddSorting();
 
 var app = builder.Build();
+
+using (var scope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
+{
+    scope.ServiceProvider.GetRequiredService<SampleDbContext>().Database.Migrate();
+}
 
 app.MapGraphQL();
 
