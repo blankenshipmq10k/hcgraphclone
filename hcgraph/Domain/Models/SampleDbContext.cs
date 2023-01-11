@@ -12,8 +12,13 @@ namespace hcgraph.Domain.Models
             if (!migrated)
             {
                 migrated = true;
-                Database.EnsureCreated();
+                //Database.EnsureCreated();
+
+                var test = Database.GetMigrations();
+                var a = test.Count();
+
                 Database.Migrate();
+                //Database.
             }
         }
 
