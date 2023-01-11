@@ -13,6 +13,7 @@ namespace hcgraph.Domain.Models
             {
                 migrated = true;
                 Database.EnsureCreated();
+                Database.Migrate();
             }
         }
 
