@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using hcgraph.Queries;
 using hcgraph.Mutations;
 using HotChocolate.Execution.Options;
+using hcgraph.Errors;
 
 IConfigurationRoot _configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
@@ -26,6 +27,7 @@ builder.Services
     .AddScoped<IOrderService, OrderService>();
 
 builder.Services
+    .AddErrorFilter<ErrorFilter>()
     .AddGraphQLServer()
     .AddMutationConventions(applyToAllMutations: true)
     .AddQueryType(q => q.Name("Query"))
