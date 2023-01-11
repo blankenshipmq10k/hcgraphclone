@@ -44,10 +44,10 @@ builder.Services
 
 var app = builder.Build();
 
-using (var scope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
-{
-    scope.ServiceProvider.GetRequiredService<SampleDbContext>().Database.Migrate();
-}
+// using (var scope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
+// {
+//     scope.ServiceProvider.GetRequiredService<SampleDbContext>().Database.Migrate();
+// }
 
 app.MapGraphQL();
 
